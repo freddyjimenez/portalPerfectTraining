@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
@@ -19,8 +17,7 @@ import org.primefaces.context.RequestContext;
  *
  * @author Freddy Jimenez
  */
-@ManagedBean
-@SessionScoped
+
 public class indexBean implements Serializable {
 
     /**
@@ -53,7 +50,7 @@ public class indexBean implements Serializable {
         this.images = images;
     }
 
-    public void login(ActionEvent actionEvent) {
+    public void login() {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Proximente", "Proximamente Disponible");
         boolean loggedIn = false;
