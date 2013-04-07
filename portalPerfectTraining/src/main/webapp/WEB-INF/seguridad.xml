@@ -9,9 +9,9 @@
 
     <http auto-config="true" use-expressions="true">
 
-                <intercept-url pattern="/index.xhtml" access="hasRole('ROLE_INDEX')" />
-        <intercept-url pattern="/modulos/cliente/clientes.xhtml" access="hasRole('ROLE_CLIENTE_PAGE')" />
-        <intercept-url pattern="/modulos/cliente/nuevoCliente.xhtml" access="hasRole('ROLE_CLIENTE_REGISTRO')" />
+                <intercept-url pattern="/sys/index.xhtml" access="hasRole('ROLE_INDEX')" />
+        <intercept-url pattern="/sys/modulos/cliente/clientes.xhtml" access="hasRole('ROLE_CLIENTE_PAGE')" />
+        <intercept-url pattern="/sys/modulos/cliente/nuevoCliente.xhtml" access="hasRole('ROLE_CLIENTE_REGISTRO')" />
 
       <form-login login-page="/" authentication-failure-url="/" default-target-url="/sys/"/>
     </http>

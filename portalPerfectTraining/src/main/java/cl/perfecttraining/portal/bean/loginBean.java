@@ -5,6 +5,7 @@
 package cl.perfecttraining.portal.bean;
 
 import java.io.IOException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -15,12 +16,16 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.w3c.dom.events.EventException;
 
 /**
  *
@@ -73,10 +78,28 @@ public class loginBean {
             authenticationManager=(AuthenticationManager) getSpringBean("authenticationManager");
             result = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(this.getUsername(), this.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(result);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
+        if (result.isAuthenticated()) {
+                //lookup authentication success url, or find redirect parameter from login bean
+                 FacesContext.getCurrentInstance().getExternalContext().redirect("/sys/"); 
+            }
+        } catch (BadCredentialsException badCredentialsException) {
+            FacesMessage facesMessage =
+                new FacesMessage("Error al Iniciar Sesión Rut o Clave Incorrecta.");
+            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
+        } catch (LockedException lockedException) {
+            FacesMessage facesMessage =
+                new FacesMessage("Su Cuenta se Encuentra Bloquiada, Por Favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
+        } catch (DisabledException disabledException) {
+            FacesMessage facesMessage =
+                new FacesMessage("Su Cuenta se Encuentra Desabilitada, Por Favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
+        }catch(EventException event){
+             FacesMessage facesMessage =
+                new FacesMessage("Proximamente Disponible");
+            FacesContext.getCurrentInstance().addMessage(null,facesMessage);
         }
-         FacesContext.getCurrentInstance().getExternalContext().redirect("/perfectTraining/"); 
+        
 
     }
     private Object getSpringBean(String name){
