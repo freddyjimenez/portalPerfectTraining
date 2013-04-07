@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+
+        <ui:composition >
+            <h:form>
+               
+            <p:menubar styleClass="centeredMenuBar">  
+                <base href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
+                <p:menuitem value="Inicio" icon="ui-icon-home" url="/index.xhtml"/>
+                <p:menuitem value="Quienes Somos" icon="ui-icon-note" url="/quienesSomos.xhtml"/>
+                <p:menuitem value="Servicios" icon="ui-icon-comment" url="/servicios.xhtml"/>
+                <p:menuitem value="Noticias" icon="ui-icon-signal-diag" url="/noticias.xhtml"/>
+                <p:menuitem value="Contactos" icon="ui-icon-mail-closed" url="/contactos.xhtml" />
+                <p:menuitem value="Iniciar sesión" icon="ui-icon-person" id="login"/>
+                <f:facet name="options">
+                    <p:overlayPanel id="chartPanel" for="login" hideEffect="fade" >
+
+                            
+                            <h:panelGrid columns="2" cellpadding="5">  
+                                <h:outputLabel for="username" value="Rut:" />  
+                                <p:inputText id="username"  label="username" required="true" requiredMessage="El RUT es Requerido" />  
+
+                                <h:outputLabel for="password" value="Clave:" />  
+                                <h:inputSecret  id="password" label="password" required="true" requiredMessage="La Clave es Requerida"/>  
+
+                                <f:facet name="footer">  
+                                    <p:commandButton id="loginButton" value="Iniciar" update=":growl"  actionListener="#{indexBean.login}" />  
+                                </f:facet>
+                            </h:panelGrid>  
+ 
+                    </p:overlayPanel>
+                </f:facet>
+
+            </p:menubar>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>

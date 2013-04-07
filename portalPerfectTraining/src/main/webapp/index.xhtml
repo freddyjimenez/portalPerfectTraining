@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Bienvenidos a Perfect Training</title>
+        </f:facet>
+
+        <link type="text/css" rel="stylesheet" href="css/standart.css" />
+    </h:head>
+
+
+    <h:body>
+
+        
+        <h:form>
+   <p:growl id="growl" sticky="true" showDetail="true"/>
+            <p:layout style="min-width:400px; min-height:760px; max-width: 1020px; margin-left:auto; margin-right:auto;" >
+                
+                <p:layoutUnit id="top" position="north" size="200">
+                    <p:graphicImage url="/img/header.jpg"/>
+                    <ui:include src="template/menu.xhtml"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="30">
+                    <div align="center">Perfect Training 2013 - Luis Uribe #2216 - Quintero - (032) 2930810 - contacto@perfecttraining.cl</div>
+                </p:layoutUnit>
+
+
+                <p:layoutUnit id="center" position="center" >
+                    <p:galleria value="#{indexBean.images}" var="image" panelWidth="1012" panelHeight="425" showCaption="true" showFilmstrip="true">  
+                        <p:graphicImage value="/img/galeriaIndex/#{image.url}" alt="#{image.descripcion}" title="#{image.titulo}"/>  
+                    </p:galleria>  
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+      
+    </h:body>
+</html>
