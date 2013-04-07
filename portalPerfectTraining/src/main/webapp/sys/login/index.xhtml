@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+
+        <ui:composition >
+
+            <h:panelGrid columns="2" cellpadding="5">  
+                <h:outputLabel for="username" value="Rut:" />  
+                <p:inputText id="username"  label="username" required="true" requiredMessage="El RUT es Requerido" value="#{loginBean.username}"/>  
+
+                <h:outputLabel for="password" value="Clave:" />  
+                <h:inputSecret  id="password" label="password" required="true" requiredMessage="La Clave es Requerida" value="#{loginBean.password}"/>  
+
+                <f:facet name="footer">  
+                    <p:commandButton id="loginButton" value="Iniciar" update=":growl"  actionListener="#{loginBean.login}" />  
+                </f:facet>
+            </h:panelGrid>  
+
+        </ui:composition>
+    </h:body>
+</html>

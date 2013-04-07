@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <h:form >
+            <p:wizard widgetVar="wiz" nextLabel="Siguiente" backLabel="Anterior">
+                <p:tab id="personal" title="Datos Basicos">
+                    <p:panel header="Datos Basicos">
+                      
+                        <h:messages errorClass="error"/>
+                        <h:panelGrid columns="3" columnClasses="label, value" styleClass="grid">
+                            <h:outputText value="Rut: *" />
+                            <p:inputText required="true" label="rut" id="rut"
+                                         value="#{nuevoClienteBean.nuevoUsuario.rut}"  requiredMessage="El Rut es Obligatorio" validator="validator.rutValidator" />
+                             <p:message for="rut" display="icon"/>  
+                            <h:outputText value="Primer Nombre: *" />
+                            <p:inputText id="primerNombre" required="true" label="primerNombre"
+                                         value="#{nuevoClienteBean.nuevoUsuario.primerNombre}" requiredMessage="El Primer Nombre es Obligatorio"/>
+                             <p:message for="primerNombre" display="icon"/>  
+                            <h:outputText value="Segundo Nombre:" />
+                            <p:inputText required="false" label="segundoNombre" id="segundoNombre"
+                                         value="#{nuevoClienteBean.nuevoUsuario.segundoNombre}"/>
+                             <p:message for="segundoNombre" display="icon"/>  
+                            <h:outputText value="Apellido Paterno: *" />
+                            <p:inputText required="true" label="apellidoPaterno" id="apellidoPaterno"
+                                         value="#{nuevoClienteBean.nuevoUsuario.apellidoPaterno}" requiredMessage="El Apellido Paterno es Obligatorio"/>
+                             <p:message for="apellidoPaterno" display="icon"/>  
+                            <h:outputText value="Apellido Materno *" />
+                            <p:inputText required="true" label="apellidoMaterno" id="apellidoMaterno"
+                                         value="#{nuevoClienteBean.nuevoUsuario.apellidoMaterno}" requiredMessage="El Apellido Materno es Obligatorio"/>
+                             <p:message for="apellidoMaterno" display="icon"/>  
+                        </h:panelGrid>
+                       
+                    </p:panel>
+                </p:tab>
+                <p:tab id="address" title="Domicilio">
+                    <p:panel header="Detalles del Domicilio">
+                        <h:messages errorClass="error"/>
+                        <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                            <h:outputText value="Direccion: *" />
+                            <p:inputText id="direccion" value="#{nuevoClienteBean.nuevoUsuario.direccion}" required="true" requiredMessage="La Dirrecion es Obligatoria"/>
+                           <p:message for="direccion" display="icon"/>  
+                            <h:outputText value="Comuna: * " />
+                            <p:inputText id="comuna" value="#{nuevoClienteBean.nuevoUsuario.comuna}" required="true" requiredMessage="La Comuna es Obligatoria"/>
+                            <p:message for="comuna" display="icon"/>  
+                            <h:outputText value="Telefono:" />
+                            <p:inputText id="telefono" value="#{nuevoClienteBean.nuevoUsuario.telefono}" />
+                            <p:message for="telefono" display="icon"/>  
+                            <h:outputText value="Celular:" />
+                            <p:inputText id="celular" value="#{nuevoClienteBean.nuevoUsuario.celular}" />
+                            <p:message for="celular" display="icon"/>  
+                            <h:outputText value="Telefono de Emergencia:" />
+                            <p:inputText id="telefonoEmergencia" value="#{nuevoClienteBean.nuevoUsuario.telefonoEmergencia}" />
+                            <p:message for="telefonoEmergencia" display="icon"/>  
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="usuario" title="Usuario">
+                    <p:panel header="Datos del Usuario">
+                        <h:messages errorClass="error"/>
+                        <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                            <h:outputText value="Email: *" />
+                            <p:inputText required="true" label="Email" id="email"
+                                         value="#{nuevoClienteBean.nuevoUsuario.email}" requiredMessage="El Email es Obligatorio" validatorMessage="El Formato del Email es Incorrecto nombre@ejemplo.cl">
+                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            </p:inputText>
+                            <p:message for="email" display="icon"/>  
+                            <h:outputText value="Clave:*" />
+                            <p:inputText id="clave" value="#{nuevoClienteBean.nuevoUsuario.clave}" required="true" requiredMessage="La Clave es Obligatoria"/>
+                            <p:message for="clave" display="icon"/>  
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="plan" title="Plan" >
+                    <p:panel header="Detalle Plan">
+                        <h:messages errorClass="error"/>  
+                    </p:panel>
+                </p:tab>
+                <p:tab id="tipoDePago" title="Tipo de Pago">
+                    <p:panel header="Detalle Tipo de Pago">
+                        <h:messages errorClass="error"/>  
+
+                    </p:panel>
+                </p:tab>
+                <p:tab id="confirm" title="Confirmacion">
+                    <p:panel header="Confirmacion de Datos">
+                        <h:panelGrid id="confirmation" columns="2">
+                            <h:outputText value="Nombre: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.nombre}" />
+                            <h:outputText value="Apellido: " />
+                            <h:outputText  styleClass="outputLabel"
+                                           value="#{nuevoClienteBean.nuevoCliente.apellido}"/>
+                            <h:outputText value="Direccion: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.direccion}" />
+                            <h:outputText value="Numero: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.numero}" />
+                            <h:outputText value="Ciudad: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.ciudad}" />
+                            <h:outputText value="Email: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.email}" />
+                            <h:outputText value="Telefono: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.telefono}"/>
+                            <h:outputText value="Informacion Adicional: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.info}" />
+                            <h:outputText value="Tarjeta: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.perfil}"/>
+                            <h:outputText value="Metodo de Pago: " />
+                            <h:outputText styleClass="outputLabel"
+                                          value="#{nuevoClienteBean.nuevoCliente.metodoDePago}"/>
+                            <h:outputText />
+                            <h:outputText />
+                        </h:panelGrid>
+                        <p:commandButton value="Pagar" update="growl, tablaClientes" 
+                                         actionListener="#{nuevoClienteBean.guardarNuevoCliente}"/>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+            </h:form>
+        </ui:composition>
+        
+    </h:body>
+</html>

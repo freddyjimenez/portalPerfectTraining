@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Administracion de Perfect Training</title>
+        </f:facet>
+
+        <link type="text/css" rel="stylesheet" href="../../css/standart.css" />
+    </h:head>
+
+
+    <h:body>
+
+
+        <p:growl id="glow" showDetail="true"/>  
+        <p:layout fullPage="true" >
+
+            <p:layoutUnit id="top" position="north" size="50">
+
+                <ui:include src="../../template/menu.xhtml"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit id="bottom" position="south" size="60">
+                <div align="center">Sistema de Administracion de Perfect Training 2013
+
+                    <img src="../../img/logofooter.png"/></div>
+            </p:layoutUnit>
+
+
+            <p:layoutUnit id="center" position="center" >
+                <div align="center"><h2>Administracion de Clientes</h2>
+                </div>
+                <h:form>
+                <sec:authorize ifAnyGranted="ROLE_CLIENTE_LISTAR">
+                    <sec:authorize ifAnyGranted="ROLE_CLIENTE_ELIMINAR">
+                        <p:confirmDialog id="confirmDialogRemove" message="Esta Seguro de Dar de Baja a este Cliente" header="Dar de Baja Cliente" severity="alert" widgetVar="confirmDialogRemove" appendToBody="true">  
+                            <p:commandButton value="Si, Estoy Seguro" oncomplete="confirmDialogRemove.hide();" actionListener="#{listarClientes.darDeBajaCliente}" update=":glow, tablaClientes"/>  
+                            <p:commandButton value="No lo Estoy" onclick="confirmDialogRemove.hide();" type="button" />  
+                        </p:confirmDialog> 
+                    </sec:authorize>
+                    <p:dataTable var="client" value="#{listarClientes.clientes}" rowKey="#{Cliente.rut}" paginator="true" rows="10" filteredValue="#{listarClientes.clientesFiltrados}" id="tablaClientes" editable="false" emptyMessage="No hay Clientes">
+                        <f:facet name="header">
+                            Listado de Clientes
+                        </f:facet>
+                        <p:column headerText="Rut" sortBy="#{client.rut}" filterBy="#{client.rut}" id="rut">
+                            #{client.rut}
+                        </p:column>
+                        <p:column headerText="Primer Nombre" sortBy="#{client.usuario.primerNombre}" filterBy="#{client.usuario.primerNombre}" id="primerNombre">
+                            #{client.usuario.primerNombre}
+                        </p:column>
+                        <p:column headerText="Apellido Paterno" sortBy="#{client.usuario.apellidoPaterno}" filterBy="#{client.usuario.apellidoPaterno}" id="apellidoPaterno">
+                            #{client.usuario.apellidoPaterno}
+                        </p:column>
+                        <p:column headerText="Apellido Materno" sortBy="#{client.usuario.apellidoMaterno}" filterBy="#{client.usuario.apellidoMaterno}" id="apellidoMaterno">
+                            #{client.usuario.apellidoMaterno}
+                        </p:column>
+                        <p:column headerText="Opciones">  
+                            <sec:authorize ifAnyGranted="ROLE_CLIENTE_MODIFICAR">
+                            <p:commandLink onclick="confirmDialogRemove.show();" >
+                                <span class="ui-icon ui-icon-trash"/>
+                                <f:setPropertyActionListener value="#{clien}" target="#{listarClientes.clienteSelecionado}"/>
+                            </p:commandLink>
+                            </sec:authorize>
+                            <sec:authorize ifAnyGranted="ROLE_CLIENTE_ELIMINAR">
+                            <p:commandLink onclick="confirmDialogRemove.show();" >
+                                <span class="ui-icon ui-icon-trash"/>
+                                <f:setPropertyActionListener value="#{clien}" target="#{listarClientes.clienteSelecionado}"/>
+                            </p:commandLink>
+                            </sec:authorize>
+                        </p:column>  
+                    </p:dataTable>
+                </sec:authorize>
+                <sec:authorize ifAnyGranted="ROLE_CLIENTE_REGISTRO">
+                    <p:commandButton value="Nuevo Cliente" id="btnNuevoCliente"  
+                                     icon="ui-icon-person" onclick="nuevoCliente.show();"/>  
+                    <p:dialog header="Nuevo Cliente" widgetVar="nuevoCliente" resizable="false" >
+                  
+                        <ui:include src="nuevoCliente.xhtml"/>
+                     
+                    </p:dialog>
+                </sec:authorize>
+                <sec:authorize ifAllGranted="ROLE_ADMIN, ROLE_BAR">
+                    Lorem ipsum dolor sit amet1
+                </sec:authorize>
+
+                <sec:authorize ifNotGranted="ROLE_ADMIN, ROLE_BAR">
+                    Lorem ipsum dolor sit amet2
+                </sec:authorize>
+
+                <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_BAR">
+                    Lorem ipsum dolor sit amet3
+                </sec:authorize>
+            </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+
+
+    </h:body>
+</html>
