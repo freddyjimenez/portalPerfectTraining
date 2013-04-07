@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cl.perfecttraining.portalperfecttraining.bean;
+package cl.perfecttraining.portal.bean;
 
-import cl.perfecttraining.portalperfecttraining.modell.imageGaleriaIndex;
+import cl.perfecttraining.portal.modell.imageGaleriaIndex;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class indexBean implements Serializable {
 
     public void login() {
         RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Proximente", "Proximamente Disponible");
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Proximamente", "Proximamente Disponible");
         boolean loggedIn = false;
 
         // if(username != null  &&&& username.equals("admin") && password != null  && password.equals("admin")) {  

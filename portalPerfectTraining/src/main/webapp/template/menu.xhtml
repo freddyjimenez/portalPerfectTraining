@@ -27,13 +27,13 @@
                             
                             <h:panelGrid columns="2" cellpadding="5">  
                                 <h:outputLabel for="username" value="Rut:" />  
-                                <p:inputText id="username"  label="username" required="true" requiredMessage="El RUT es Requerido" />  
+                                <p:inputText id="username"  label="username" required="true" requiredMessage="El RUT es Requerido" value="#{loginBean.username}"/>  
 
                                 <h:outputLabel for="password" value="Clave:" />  
-                                <h:inputSecret  id="password" label="password" required="true" requiredMessage="La Clave es Requerida"/>  
+                                <h:inputSecret  id="password" label="password" required="true" requiredMessage="La Clave es Requerida" value="#{loginBean.password}"/>  
 
                                 <f:facet name="footer">  
-                                    <p:commandButton id="loginButton" value="Iniciar" update=":growl"  actionListener="#{indexBean.login}" />  
+                                    <p:commandButton id="loginButton" value="Iniciar" update=":growl"  actionListener="#{loginBean.login}" />  
                                 </f:facet>
                             </h:panelGrid>  
  

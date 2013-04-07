@@ -11,7 +11,7 @@
 
         <intercept-url pattern="/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
- <!--       <form-login login-page="/login/index.xhtml" authentication-failure-url="/login/index.xhtml" default-target-url="/"/>-->
+      <form-login login-page="/" authentication-failure-url="/" default-target-url="/perfectTraining/"/>
     </http>
     
     <!-- ================ OLD WAY ================================================== 
