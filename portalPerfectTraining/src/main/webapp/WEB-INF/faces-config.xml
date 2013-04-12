@@ -9,11 +9,27 @@
     <managed-bean>
         <managed-bean-name>indexBean</managed-bean-name>
         <managed-bean-class>cl.perfecttraining.portal.bean.indexBean</managed-bean-class>
-    
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>loginBean</managed-bean-name>
         <managed-bean-class>cl.perfecttraining.portal.bean.loginBean</managed-bean-class>
-    
-        <managed-bean-scope>request</managed-bean-scope></managed-bean>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>listarClientes</managed-bean-name>
+        <managed-bean-class>cl.perfecttraining.sys.bean.listarClientes</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>nuevoClienteBean</managed-bean-name>
+        <managed-bean-class>cl.perfecttraining.sys.bean.nuevoClienteBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <validator>
+        <validator-id>validator.rutValidator</validator-id>
+        <validator-class>
+            cl.perfecttraining.sys.validator.rutValidator
+        </validator-class>
+    </validator>
 </faces-config>

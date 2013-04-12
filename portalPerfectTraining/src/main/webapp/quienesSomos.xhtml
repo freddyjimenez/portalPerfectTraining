@@ -14,17 +14,34 @@
         </f:facet>
 
         <link type="text/css" rel="stylesheet" href="css/standart.css" />
+         <script type="text/javascript">
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-40052931-1', 'perfecttraiining.cl');
+            ga('send', 'pageview');
+
+        </script>
     </h:head>
 
 
     <h:body>
 
-  <p:growl id="growl" sticky="true" showDetail="true"/>
+        <p:growl id="growl" sticky="true" showDetail="true"/>
         <h:form>
-          
+
             <p:layout style="min-width:400px; min-height:760px; max-width: 1020px; margin-left:auto; margin-right:auto;" >
 
-                <p:layoutUnit id="top" position="north" size="200">
+                <p:layoutUnit id="top" position="north" size="190">
                     <p:graphicImage url="/img/header.jpg"/>
                     <ui:include src="template/menu.xhtml"/>
                 </p:layoutUnit>
@@ -47,6 +64,14 @@
                 </p:layoutUnit>
             </p:layout>
         </h:form>
+        <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:1px">  
+            <f:facet name="start">  
+                <p:graphicImage value="/img/loading.gif" />  
+            </f:facet>  
 
+            <f:facet name="complete">  
+                <h:outputText value="" /> 
+            </f:facet>  
+        </p:ajaxStatus> 
     </h:body>
 </html>

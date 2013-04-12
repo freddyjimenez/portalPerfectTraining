@@ -48,6 +48,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findByConsumeCafe", query = "SELECT c FROM Cliente c WHERE c.consumeCafe = :consumeCafe"),
     @NamedQuery(name = "Cliente.findByTipoCafe", query = "SELECT c FROM Cliente c WHERE c.tipoCafe = :tipoCafe")})
 public class Cliente implements Serializable {
+    @Size(max = 1000)
+    @Column(name = "alergico_a")
+    private String alergicoA;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -305,5 +308,13 @@ public class Cliente implements Serializable {
     public String toString() {
         return "cl.perfecttraining.model.Cliente[ rut=" + rut + " ]";
     }
-    
+
+    public String getAlergicoA() {
+        return alergicoA;
+    }
+
+    public void setAlergicoA(String alergicoA) {
+        this.alergicoA = alergicoA;
+    }
+
 }

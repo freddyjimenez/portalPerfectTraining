@@ -12,9 +12,9 @@
         <ui:composition>
             <p:menubar>
                 <base href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
-                <p:menuitem value="Inicio" icon="ui-icon-home" url="/index.xhtml"/>
+                <p:menuitem value="Inicio" icon="ui-icon-home" url="/sys/"/>
                 <p:submenu label="Clientes" icon="ui-icon-person">
-                    <p:menuitem value="Listado" url="/modulos/cliente/clientes.xhtml"></p:menuitem>
+                    <p:menuitem value="Listado" url="/sys/modulos/cliente/clientes.xhtml"></p:menuitem>
                     <p:menuitem value="Evaluaciones" url="#"></p:menuitem>
                 </p:submenu>
                 <p:menuitem value="Perfiles Tarjetas" icon="ui-icon-note" url="perfiles.xhtml"/>

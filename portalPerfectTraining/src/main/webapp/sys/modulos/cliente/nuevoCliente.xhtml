@@ -11,128 +11,372 @@
     <h:body>
         <ui:composition>
             <h:form >
-            <p:wizard widgetVar="wiz" nextLabel="Siguiente" backLabel="Anterior">
-                <p:tab id="personal" title="Datos Basicos">
-                    <p:panel header="Datos Basicos">
-                      
-                        <h:messages errorClass="error"/>
-                        <h:panelGrid columns="3" columnClasses="label, value" styleClass="grid">
-                            <h:outputText value="Rut: *" />
-                            <p:inputText required="true" label="rut" id="rut"
-                                         value="#{nuevoClienteBean.nuevoUsuario.rut}"  requiredMessage="El Rut es Obligatorio" validator="validator.rutValidator" />
-                             <p:message for="rut" display="icon"/>  
-                            <h:outputText value="Primer Nombre: *" />
-                            <p:inputText id="primerNombre" required="true" label="primerNombre"
-                                         value="#{nuevoClienteBean.nuevoUsuario.primerNombre}" requiredMessage="El Primer Nombre es Obligatorio"/>
-                             <p:message for="primerNombre" display="icon"/>  
-                            <h:outputText value="Segundo Nombre:" />
-                            <p:inputText required="false" label="segundoNombre" id="segundoNombre"
-                                         value="#{nuevoClienteBean.nuevoUsuario.segundoNombre}"/>
-                             <p:message for="segundoNombre" display="icon"/>  
-                            <h:outputText value="Apellido Paterno: *" />
-                            <p:inputText required="true" label="apellidoPaterno" id="apellidoPaterno"
-                                         value="#{nuevoClienteBean.nuevoUsuario.apellidoPaterno}" requiredMessage="El Apellido Paterno es Obligatorio"/>
-                             <p:message for="apellidoPaterno" display="icon"/>  
-                            <h:outputText value="Apellido Materno *" />
-                            <p:inputText required="true" label="apellidoMaterno" id="apellidoMaterno"
-                                         value="#{nuevoClienteBean.nuevoUsuario.apellidoMaterno}" requiredMessage="El Apellido Materno es Obligatorio"/>
-                             <p:message for="apellidoMaterno" display="icon"/>  
-                        </h:panelGrid>
-                       
-                    </p:panel>
-                </p:tab>
-                <p:tab id="address" title="Domicilio">
-                    <p:panel header="Detalles del Domicilio">
-                        <h:messages errorClass="error"/>
-                        <h:panelGrid columns="3" columnClasses="label, value, messaje">
-                            <h:outputText value="Direccion: *" />
-                            <p:inputText id="direccion" value="#{nuevoClienteBean.nuevoUsuario.direccion}" required="true" requiredMessage="La Dirrecion es Obligatoria"/>
-                           <p:message for="direccion" display="icon"/>  
-                            <h:outputText value="Comuna: * " />
-                            <p:inputText id="comuna" value="#{nuevoClienteBean.nuevoUsuario.comuna}" required="true" requiredMessage="La Comuna es Obligatoria"/>
-                            <p:message for="comuna" display="icon"/>  
-                            <h:outputText value="Telefono:" />
-                            <p:inputText id="telefono" value="#{nuevoClienteBean.nuevoUsuario.telefono}" />
-                            <p:message for="telefono" display="icon"/>  
-                            <h:outputText value="Celular:" />
-                            <p:inputText id="celular" value="#{nuevoClienteBean.nuevoUsuario.celular}" />
-                            <p:message for="celular" display="icon"/>  
-                            <h:outputText value="Telefono de Emergencia:" />
-                            <p:inputText id="telefonoEmergencia" value="#{nuevoClienteBean.nuevoUsuario.telefonoEmergencia}" />
-                            <p:message for="telefonoEmergencia" display="icon"/>  
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-                <p:tab id="usuario" title="Usuario">
-                    <p:panel header="Datos del Usuario">
-                        <h:messages errorClass="error"/>
-                        <h:panelGrid columns="3" columnClasses="label, value, messaje">
-                            <h:outputText value="Email: *" />
-                            <p:inputText required="true" label="Email" id="email"
-                                         value="#{nuevoClienteBean.nuevoUsuario.email}" requiredMessage="El Email es Obligatorio" validatorMessage="El Formato del Email es Incorrecto nombre@ejemplo.cl">
-                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                            </p:inputText>
-                            <p:message for="email" display="icon"/>  
-                            <h:outputText value="Clave:*" />
-                            <p:inputText id="clave" value="#{nuevoClienteBean.nuevoUsuario.clave}" required="true" requiredMessage="La Clave es Obligatoria"/>
-                            <p:message for="clave" display="icon"/>  
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-                <p:tab id="plan" title="Plan" >
-                    <p:panel header="Detalle Plan">
-                        <h:messages errorClass="error"/>  
-                    </p:panel>
-                </p:tab>
-                <p:tab id="tipoDePago" title="Tipo de Pago">
-                    <p:panel header="Detalle Tipo de Pago">
-                        <h:messages errorClass="error"/>  
+                <p:wizard widgetVar="wiz" nextLabel="Siguiente" backLabel="Anterior" id="wiNuevoCliente">
+                    <p:tab id="personal" title="Datos Basicos">
+                        <p:panel header="Datos Basicos">
 
-                    </p:panel>
-                </p:tab>
-                <p:tab id="confirm" title="Confirmacion">
-                    <p:panel header="Confirmacion de Datos">
-                        <h:panelGrid id="confirmation" columns="2">
-                            <h:outputText value="Nombre: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.nombre}" />
-                            <h:outputText value="Apellido: " />
-                            <h:outputText  styleClass="outputLabel"
-                                           value="#{nuevoClienteBean.nuevoCliente.apellido}"/>
-                            <h:outputText value="Direccion: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.direccion}" />
-                            <h:outputText value="Numero: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.numero}" />
-                            <h:outputText value="Ciudad: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.ciudad}" />
-                            <h:outputText value="Email: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.email}" />
-                            <h:outputText value="Telefono: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.telefono}"/>
-                            <h:outputText value="Informacion Adicional: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.info}" />
-                            <h:outputText value="Tarjeta: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.perfil}"/>
-                            <h:outputText value="Metodo de Pago: " />
-                            <h:outputText styleClass="outputLabel"
-                                          value="#{nuevoClienteBean.nuevoCliente.metodoDePago}"/>
-                            <h:outputText />
-                            <h:outputText />
-                        </h:panelGrid>
-                        <p:commandButton value="Pagar" update="growl, tablaClientes" 
-                                         actionListener="#{nuevoClienteBean.guardarNuevoCliente}"/>
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
+                            <h:messages errorClass="error"/>
+                            <h:panelGrid columns="3" columnClasses="label, value" styleClass="grid">
+                                <h:outputText value="Rut: *" />
+                                <p:inputText required="true" label="rut" id="rut"
+                                             value="#{listarClientes.nuevoUsuario.rut}"  requiredMessage="El Rut es Obligatorio" validator="validator.rutValidator" />
+                                <p:message for="rut" display="icon"/>  
+                                <h:outputText value="Primer Nombre: *" />
+                                <p:inputText id="primerNombre" required="true" label="primerNombre"
+                                             value="#{listarClientes.nuevoUsuario.primerNombre}" requiredMessage="El Primer Nombre es Obligatorio"/>
+                                <p:message for="primerNombre" display="icon"/>  
+                                <h:outputText value="Segundo Nombre:" />
+                                <p:inputText required="false" label="segundoNombre" id="segundoNombre"
+                                             value="#{listarClientes.nuevoUsuario.segundoNombre}"/>
+                                <p:message for="segundoNombre" display="icon"/>  
+                                <h:outputText value="Apellido Paterno: *" />
+                                <p:inputText required="true" label="apellidoPaterno" id="apellidoPaterno"
+                                             value="#{listarClientes.nuevoUsuario.apellidoPaterno}" requiredMessage="El Apellido Paterno es Obligatorio"/>
+                                <p:message for="apellidoPaterno" display="icon"/>  
+                                <h:outputText value="Apellido Materno: *" />
+                                <p:inputText required="true" label="apellidoMaterno" id="apellidoMaterno"
+                                             value="#{listarClientes.nuevoUsuario.apellidoMaterno}" requiredMessage="El Apellido Materno es Obligatorio"/>
+                                <p:message for="apellidoMaterno" display="icon"/>  
+                                <h:outputText value="Ocupacion: " />
+                                <p:inputText label="apellidoMaterno" id="ocupacion"
+                                             value="#{listarClientes.nuevoCliente.ocupacion}" />
+                                <p:message for="ocupacion" display="icon"/> 
+                                <h:outputText value="Fecha de Nacimiento: *" />
+                                <p:calendar value="#{listarClientes.nuevoUsuario.fechaNacimiento}" id="fechaNacimiento" showOn="button" required="true" requiredMessage="La Fecha de Nacimiento es Obligatorio"  >
+                                    <f:convertDateTime pattern="d-M-yyy"/>
+                                </p:calendar>
+                                <p:message for="fechaNacimiento" display="icon"/>  
+                                <p:tooltip for="fechaNacimiento" value="Formato d-M-yyyy ej: 31-12-2013" showEffect="fade" hideEffect="fade" />
+                                
+                            </h:panelGrid>
+
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="address" title="Domicilio">
+                        <p:panel header="Detalles del Domicilio">
+                            <h:messages errorClass="error"/>
+                            <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                                <h:outputText value="Direccion: *" />
+                                <p:inputText id="direccion" value="#{listarClientes.nuevoUsuario.direccion}" required="true" requiredMessage="La Dirrecion es Obligatoria"/>
+                                <p:message for="direccion" display="icon"/>  
+                                <h:outputText value="Comuna: * " />
+                                <p:inputText id="comuna" value="#{listarClientes.nuevoUsuario.comuna}" required="true" requiredMessage="La Comuna es Obligatoria"/>
+                                <p:message for="comuna" display="icon"/>  
+                                <h:outputText value="Telefono:" />
+                                <p:inputText id="telefono" value="#{listarClientes.nuevoUsuario.telefono}" />
+                                <p:message for="telefono" display="icon"/>  
+                                <h:outputText value="Celular:" />
+                                <p:inputText id="celular" value="#{listarClientes.nuevoUsuario.celular}" />
+                                <p:message for="celular" display="icon"/>  
+                                <h:outputText value="Telefono de Emergencia:" />
+                                <p:inputText id="telefonoEmergencia" value="#{listarClientes.nuevoUsuario.telefonoEmergencia}" />
+                                <p:message for="telefonoEmergencia" display="icon"/>  
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="usuario" title="Usuario">
+                        <p:panel header="Datos del Usuario">
+                            <h:messages errorClass="error"/>
+                            <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                                <h:outputText value="Email: *" />
+                                <p:inputText required="true" label="Email" id="email"
+                                             value="#{listarClientes.nuevoUsuario.email}" requiredMessage="El Email es Obligatorio" validatorMessage="El Formato del Email es Incorrecto nombre@ejemplo.cl">
+                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                </p:inputText>
+                                <p:message for="email" display="icon"/>  
+                                <h:outputText value="Clave:*" />
+                                <p:inputText id="clave" value="#{listarClientes.nuevoUsuario.clave}" required="true" requiredMessage="La Clave es Obligatoria"/>
+                                <p:message for="clave" display="icon"/>  
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="plan" title="Plan" >
+                        <p:panel header="Detalle Plan">
+                            <h:messages errorClass="error"/>  
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="sanitarios" title="Datos Sanitarios">
+                        <p:panel header="Detalle Datos Sanitarios">
+                            <h:messages errorClass="error"/>  
+                            <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                                <h:outputText value="Lesiones u Operaciones:" />
+                                <p:inputTextarea id="lesionesOperaciones" value="#{listarClientes.nuevoCliente.lesionesOperaciones}" rows="10" cols="55" maxlength="1000" counter="lesionesOperacionesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="lesionesOperacionesContador" /> 
+                                <h:outputText value="Enfermedades Cardiacas:" />
+                                <p:inputTextarea id="enfermedadesCardiacas" value="#{listarClientes.nuevoCliente.enfermedadesCardiacas}" rows="10" cols="55" maxlength="1000" counter="enfermedadesCardiacasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="enfermedadesCardiacasContador" /> 
+                                <h:outputText value="Enfermedades Previas:" />
+                                <p:inputTextarea id="enfermedadesPrevias" value="#{listarClientes.nuevoCliente.enfermedadesPrevias}" rows="10" cols="55" maxlength="1000" counter="enfermedadesPreviasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="enfermedadesPreviasContador" /> 
+                                <h:outputText value="Problemas Sensoriales:" />
+                                <p:inputTextarea id="problemasSensoriales" value="#{listarClientes.nuevoCliente.problemasSensoriales}" rows="10" cols="55" maxlength="1000" counter="problemasSensorialesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="problemasSensorialesContador" /> 
+                                <h:outputText value="Alergico a:" />
+                                <p:inputTextarea id="alergicoA" value="#{listarClientes.nuevoCliente.alergicoA}" rows="10" cols="55" maxlength="1000" counter="alergicoAContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="alergicoAContador" /> 
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="habitosDeportivos" title="Habitos Deportivos">
+                        <p:panel header="Detalle Habitos Deportivos">
+                            <h:messages errorClass="error"/>  
+                            <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                                <h:outputText value="¿Realizo Actividad Fisica en Algun Periodo de estos Ultimos 5 Años?" />
+                                <p:selectBooleanCheckbox id="realizaActividad5Anos" value="#{listarClientes.nuevoCliente.realizaActividad5Anos}" />
+                                <p:message for="realizaActividad5Anos" display="icon"/>  
+                                <h:outputText value="¿Realizo Actividad Fisica?" />
+                                <p:selectBooleanCheckbox id="realizaActividad" value="#{listarClientes.nuevoCliente.realizaActividad}" />
+                                <p:message for="realizaActividad" display="icon"/>  
+                                <h:outputText value="Tipo de Actividad Fisica que Realiza:" />
+                                <p:inputTextarea id="tipoActividadFisica" value="#{listarClientes.nuevoCliente.tipoActividadFisica}" rows="5" cols="40" maxlength="100" counter="tipoActividadFisicaContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="tipoActividadFisicaContador" /> 
+                                <h:outputText value="Frecuencia Semanal en la Cual Usted Realiza Actividad Fisica:" />
+                                <p:inputText id="frecuenciaSemanalActividadFisicate" value="#{listarClientes.nuevoCliente.frecuenciaSemanalActividadFisica}" />
+                                <h:outputText id="frecuenciaSemanalActividadFisica" /> 
+                                <h:outputText value="Tiempo y Duracion de la Practica de la Actividad Fisca en Minutos:" />
+                                <p:inputText id="duracionActividadFisicat" value="#{listarClientes.nuevoCliente.duracionActividadFisica}" />
+                                <h:outputText id="duracionActividadFisica" /> 
+                                <h:outputText value="¿Cuantas Horas Duerme?" />
+                                <p:inputText id="horasDormirt" value="#{listarClientes.nuevoCliente.horasDormir}" />
+                                <h:outputText id="horasDormir" /> 
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="otrosHabitos" title="Otros Habitos">
+                        <p:panel header="Detalle Otros Habitos">
+                            <h:messages errorClass="error"/>  
+                            <h:panelGrid columns="3" columnClasses="label, value, messaje">
+                                <h:outputText value="¿Fuma?" />
+                                <p:selectBooleanCheckbox id="fuma" value="#{listarClientes.nuevoCliente.fuma}" />
+                                <p:message for="fuma" display="icon"/>  
+                                <h:outputText value="Cuanto Fuma:" />
+                                <p:inputText id="cuantoFumat" value="#{listarClientes.nuevoCliente.cuantoFuma}" />
+                                <h:outputText id="cuantoFuma" /> 
+                                <h:outputText value="¿Bebe Alcohol?" />
+                                <p:selectBooleanCheckbox id="bebeAlcohol" value="#{listarClientes.nuevoCliente.bebeAlcohol}" />
+                                <p:message for="bebeAlcohol" display="icon"/>  
+                                <h:outputText value="Especifique Tipo de Alcohol:" />
+                                <p:inputTextarea id="tipoAlcohol" value="#{listarClientes.nuevoCliente.tipoAlcohol}" rows="5" cols="40" maxlength="100" counter="tipoAlcoholContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="tipoAlcoholContador" /> 
+                                <h:outputText value="Frecuencia que Bebe Alcohol:" />
+                                <p:inputText id="frecuenciaBeberAlcoholt" value="#{listarClientes.nuevoCliente.frecuenciaBeberAlcohol}" />
+                                <h:outputText id="frecuenciaBeberAlcohol" /> 
+                                <h:outputText value="¿Consume Cafe?" />
+                                <p:selectBooleanCheckbox id="consumeCafet" value="#{listarClientes.nuevoCliente.consumeCafe}" />
+                                <p:message for="consumeCafet" display="icon"/>
+                                <h:outputText value="Tipo de Cafe que Consume:" />
+                                <p:inputTextarea id="tipoCafe" value="#{listarClientes.nuevoCliente.tipoCafe}" rows="5" cols="40" maxlength="100" counter="tipoCafeContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <h:outputText id="tipoCafeContador" /> 
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="confirm" title="Confirmacion">
+                        <p:panel header="Detalle Cliente" id="exportDD">
+                            <p:panel>
+                                <p:panelGrid  styleClass="resumenGrid" >
+                                    <p:row>
+                                        <p:column> 
+                                            <p:graphicImage url="../../img/logofooter.png"/>
+                                        </p:column>
+
+                                        <p:column>
+                                            <p:panelGrid>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="Perfect Training"/>
+                                                    </p:column>
+                                                </p:row>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="Luis Uribe #2216 - Quintero"/>
+                                                    </p:column>
+                                                </p:row>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="(032) 2930810 - contacto@perfecttraining.cl"/>
+                                                    </p:column>
+                                                </p:row>
+                                            </p:panelGrid>
+
+                                        </p:column>
+
+                                    </p:row>
+                                </p:panelGrid>
+                            </p:panel>
+                            <br/>
+                            <p:fieldset legend="Datos Personales">  
+                                <p:panelGrid styleClass="resumenGrid"  >
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Rut: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoUsuario.rut}" />
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText />
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText />
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Primer Nombre: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText  styleClass="outputLabel"
+                                                           value="#{listarClientes.nuevoUsuario.primerNombre}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="Segundo Nombre: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoUsuario.segundoNombre}" />
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Apellido Paterno: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoUsuario.apellidoPaterno}" />
+                                        </p:column>
+                                        <p:column >
+                                            <h:outputText value="Apellido Materno: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoUsuario.apellidoMaterno}" />
+                                        </p:column>
+                                    </p:row>
+                                     <p:row>
+                                        <p:column>
+                                            <h:outputText value="Fecha de Nacimiento: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoUsuario.fechaNacimiento.toLocaleString}" />
+                                        </p:column>
+                                        <p:column >
+                                            <h:outputText value="Ocupacion: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.nuevoCliente.ocupacion}" />
+                                        </p:column>
+                                    </p:row>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Domicilio">  
+                                <p:panelGrid styleClass="resumenGrid" columns="4" >
+                                    <h:outputText value="Direccion: "  style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.direccion}" />
+                                    <h:outputText value="Comuna: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.comuna}"/>
+                                    <h:outputText value="Telefono: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.telefono}" />
+                                    <h:outputText value="Celular: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.celular}"/>
+                                    <h:outputText value="Telefono de Emergencia: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.telefonoEmergencia}"/>
+                                    <h:outputText value="Email: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoUsuario.email}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Datos Sanitarios">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="Lesiones u Operaciones: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.lesionesOperaciones}"/>
+                                    <h:outputText value="Enfermedades Cardiacas: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.enfermedadesCardiacas}"/>
+                                    <h:outputText value="Enfermedades Previas: " style="font-weight:bold;" />
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.enfermedadesPrevias}"/>
+                                    <h:outputText value="Problemas Sensorales: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.problemasSensoriales}"/>
+                                    <h:outputText value="Alergico a: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.alergicoA}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Habitos Deportivos">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="¿Realizo Actividad Fisica en Algun Periodo de estos Ultimos 5 Años? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.realizaActividad5Anos}"/>
+                                    <h:outputText value="¿Realizo Actividad Fisica?" style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.realizaActividad}"/>
+                                    <h:outputText value="Tipo de Actividad Fisica que Realiza: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.tipoActividadFisica}"/>
+                                    <h:outputText value="Frecuencia Semanal en la Cual Usted Realiza Actividad Fisica: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.frecuenciaSemanalActividadFisica}"/>
+                                    <h:outputText value="Tiempo y Duracion de la Practica de la Actividad Fisca en Minutos: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.duracionActividadFisica}"/>
+                                    <h:outputText value="¿Cuantas Horas Duerme? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.horasDormir}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Otros Habitos">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="¿Fuma? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.fuma}"/>
+                                    <h:outputText value="Cuanto Fuma: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.cuantoFuma}"/>
+                                    <h:outputText value="¿Bebe Alcohol? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.bebeAlcohol}"/>
+                                    <h:outputText value="Especifique Tipo de Alcohol: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.tipoAlcohol}"/>
+                                    <h:outputText value="Frecuencia que Bebe Alcohol: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.frecuenciaBeberAlcohol}"/>
+                                    <h:outputText value="¿Consume Cafe? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.consumeCafe}"/>
+                                    <h:outputText value="Tipo de Cafe que Consume: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.nuevoCliente.tipoCafe}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+
+
+
+                        </p:panel>
+                        <h:commandLink>  
+                            Imprimir
+                            <p:printer target="exportDD" />  
+                        </h:commandLink>  
+                        <p:commandButton value="Agregar Cliente" update=":glow, :formTest:tablaClientes" oncomplete="wiz.hide();"
+                                         actionListener="#{listarClientes.guardarNuevoCliente}" ajax="true"/>
+                    </p:tab>
+                </p:wizard>
             </h:form>
         </ui:composition>
-        
     </h:body>
 </html>

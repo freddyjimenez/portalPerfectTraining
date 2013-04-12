@@ -281,3 +281,6 @@ img.right {
 .centeredMenuBar .ui-menu-list {
     display: inline-block;
 }
+.resumenGrid tr, .resumenGrid td {
+   border-style: hidden !important;
+}
