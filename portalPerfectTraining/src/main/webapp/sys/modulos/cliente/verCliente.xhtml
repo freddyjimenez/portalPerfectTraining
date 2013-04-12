@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <h:form >
+                  
+                        <p:panel header="Detalle Cliente" id="exportDD">
+                            <p:panel>
+                                <p:panelGrid  styleClass="resumenGrid" >
+                                    <p:row>
+                                        <p:column> 
+                                            <p:graphicImage url="../../img/logofooter.png"/>
+                                        </p:column>
+
+                                        <p:column>
+                                            <p:panelGrid>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="Perfect Training"/>
+                                                    </p:column>
+                                                </p:row>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="Luis Uribe #2216 - Quintero"/>
+                                                    </p:column>
+                                                </p:row>
+                                                <p:row>
+                                                    <p:column>
+                                                        <h:outputText value="(032) 2930810 - contacto@perfecttraining.cl"/>
+                                                    </p:column>
+                                                </p:row>
+                                            </p:panelGrid>
+
+                                        </p:column>
+
+                                    </p:row>
+                                </p:panelGrid>
+                            </p:panel>
+                            <br/>
+                            <p:fieldset legend="Datos Personales">  
+                                <p:panelGrid styleClass="resumenGrid"  >
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Rut: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.rut}" />
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText />
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText />
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Primer Nombre: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText  styleClass="outputLabel"
+                                                           value="#{listarClientes.clienteSelecionado.usuario.primerNombre}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="Segundo Nombre: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.usuario.segundoNombre}" />
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText value="Apellido Paterno: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.usuario.apellidoPaterno}" />
+                                        </p:column>
+                                        <p:column >
+                                            <h:outputText value="Apellido Materno: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.usuario.apellidoMaterno}" />
+                                        </p:column>
+                                    </p:row>
+                                     <p:row>
+                                        <p:column>
+                                            <h:outputText value="Fecha de Nacimiento: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.usuario.fechaNacimiento}">
+                                                <f:convertDateTime pattern="d-M-yyyy"/>  
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column >
+                                            <h:outputText value="Ocupacion: " style="font-weight:bold;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText styleClass="outputLabel"
+                                                          value="#{listarClientes.clienteSelecionado.ocupacion}" />
+                                        </p:column>
+                                    </p:row>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Domicilio">  
+                                <p:panelGrid styleClass="resumenGrid" columns="4" >
+                                    <h:outputText value="Direccion: "  style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.direccion}" />
+                                    <h:outputText value="Comuna: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.comuna}"/>
+                                    <h:outputText value="Telefono: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.telefono}" />
+                                    <h:outputText value="Celular: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.celular}"/>
+                                    <h:outputText value="Telefono de Emergencia: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.telefonoEmergencia}"/>
+                                    <h:outputText value="Email: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.usuario.email}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Datos Sanitarios">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="Lesiones u Operaciones: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.lesionesOperaciones}"/>
+                                    <h:outputText value="Enfermedades Cardiacas: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.enfermedadesCardiacas}"/>
+                                    <h:outputText value="Enfermedades Previas: " style="font-weight:bold;" />
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.enfermedadesPrevias}"/>
+                                    <h:outputText value="Problemas Sensorales: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.problemasSensoriales}"/>
+                                    <h:outputText value="Alergico a: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.alergicoA}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Habitos Deportivos">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="¿Realizo Actividad Fisica en Algun Periodo de estos Ultimos 5 Años? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.realizaActividad5Anos}"/>
+                                    <h:outputText value="¿Realizo Actividad Fisica?" style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.realizaActividad}"/>
+                                    <h:outputText value="Tipo de Actividad Fisica que Realiza: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.tipoActividadFisica}"/>
+                                    <h:outputText value="Frecuencia Semanal en la Cual Usted Realiza Actividad Fisica: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.frecuenciaSemanalActividadFisica}"/>
+                                    <h:outputText value="Tiempo y Duracion de la Practica de la Actividad Fisca en Minutos: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.duracionActividadFisica}"/>
+                                    <h:outputText value="¿Cuantas Horas Duerme? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.horasDormir}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+                            <p:fieldset legend="Otros Habitos">  
+                                <p:panelGrid styleClass="resumenGrid" columns="2" >
+                                    <h:outputText value="¿Fuma? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.fuma}"/>
+                                    <h:outputText value="Cuanto Fuma: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.cuantoFuma}"/>
+                                    <h:outputText value="¿Bebe Alcohol? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.bebeAlcohol}"/>
+                                    <h:outputText value="Especifique Tipo de Alcohol: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.tipoAlcohol}"/>
+                                    <h:outputText value="Frecuencia que Bebe Alcohol: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.frecuenciaBeberAlcohol}"/>
+                                    <h:outputText value="¿Consume Cafe? " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.consumeCafe}"/>
+                                    <h:outputText value="Tipo de Cafe que Consume: " style="font-weight:bold;"/>
+                                    <h:outputText styleClass="outputLabel"
+                                                  value="#{listarClientes.clienteSelecionado.tipoCafe}"/>
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <br/>
+
+
+
+                        </p:panel>
+                        <h:commandLink>  
+                            Imprimir
+                            <p:printer target="exportDD" />  
+                        </h:commandLink>  
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>

@@ -42,8 +42,9 @@
                                              value="#{listarClientes.nuevoCliente.ocupacion}" />
                                 <p:message for="ocupacion" display="icon"/> 
                                 <h:outputText value="Fecha de Nacimiento: *" />
-                                <p:calendar value="#{listarClientes.nuevoUsuario.fechaNacimiento}" id="fechaNacimiento" showOn="button" required="true" requiredMessage="La Fecha de Nacimiento es Obligatorio"  >
-                                    <f:convertDateTime pattern="d-M-yyy"/>
+                                
+                                <p:calendar  navigator="true" value="#{listarClientes.nuevoUsuario.fechaNacimiento}" id="fechaNacimiento" showOn="button" required="true" requiredMessage="La Fecha de Nacimiento es Obligatorio" pattern="dd-MM-yyyy" locale="es">
+                              
                                 </p:calendar>
                                 <p:message for="fechaNacimiento" display="icon"/>  
                                 <p:tooltip for="fechaNacimiento" value="Formato d-M-yyyy ej: 31-12-2013" showEffect="fade" hideEffect="fade" />
@@ -259,7 +260,9 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.fechaNacimiento.toLocaleString}" />
+                                                          value="#{listarClientes.nuevoUsuario.fechaNacimiento}">
+                                                <f:convertDateTime pattern="d-M-yyyy"/>  
+                                            </h:outputText>
                                         </p:column>
                                         <p:column >
                                             <h:outputText value="Ocupacion: " style="font-weight:bold;"/>
@@ -372,7 +375,7 @@
                             Imprimir
                             <p:printer target="exportDD" />  
                         </h:commandLink>  
-                        <p:commandButton value="Agregar Cliente" update=":glow, :formTest:tablaClientes" oncomplete="wiz.hide();"
+                        <p:commandButton value="Agregar Cliente" update=":glow, :formTest:tablaClientes" oncomplete="nuevoCliente.hide();"
                                          actionListener="#{listarClientes.guardarNuevoCliente}" ajax="true"/>
                     </p:tab>
                 </p:wizard>

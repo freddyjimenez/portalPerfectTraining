@@ -102,6 +102,10 @@ public class loginBean {
         
 
     }
+    public void recuperarClave(){
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Funcion Proximamente Disponible", "Temporalmente no Disponible");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+    }
     private Object getSpringBean(String name){
         WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(
                 (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext());

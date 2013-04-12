@@ -35,10 +35,16 @@
                 </div>
                 <h:form id="formTest">
                     <sec:authorize ifAnyGranted="ROLE_CLIENTE_LISTAR">
-                        <sec:authorize ifAnyGranted="ROLE_CLIENTE_ELIMINAR">
-                            <p:confirmDialog id="confirmDialogRemove" message="Esta Seguro de Dar de Baja a este Cliente" header="Dar de Baja Cliente" severity="alert" widgetVar="confirmDialogRemove" appendToBody="true">  
-                                <p:commandButton value="Si, Estoy Seguro" oncomplete="confirmDialogRemove.hide();" actionListener="#{listarClientes.darDeBajaCliente}" update=":glow, tablaClientes"/>  
-                                <p:commandButton value="No lo Estoy" onclick="confirmDialogRemove.hide();" type="button" />  
+                        <sec:authorize ifAnyGranted="ROLE_CLIENTE_DAR_BAJA">
+                            <p:confirmDialog id="confirmDialogDarBaja" message="Esta Seguro de Dar de Baja a este Cliente" header="Dar de Baja Cliente" severity="alert" widgetVar="confirmDialogDarBaja" appendToBody="true">  
+                                <p:commandButton value="Si, Estoy Seguro" oncomplete="confirmDialogDarBaja.hide();" actionListener="#{listarClientes.darDeBajaCliente}" update=":glow, tablaClientes"/>  
+                                <p:commandButton value="No lo Estoy" onclick="confirmDialogDarBaja.hide();" type="button" />  
+                            </p:confirmDialog> 
+                        </sec:authorize>
+                        <sec:authorize ifAnyGranted="ROLE_CLIENTE_DAR_ALTA">
+                            <p:confirmDialog id="confirmDialogDarAlta" message="Esta Seguro de Dar de Baja a este Cliente" header="Dar de Baja Cliente" severity="alert" widgetVar="confirmDialogDarAlta" appendToBody="true">  
+                                <p:commandButton value="Si, Estoy Seguro" oncomplete="confirmDialogDarAlta.hide();" actionListener="#{listarClientes.darDeAltaCliente}" update=":glow, tablaClientes"/>  
+                                <p:commandButton value="No lo Estoy" onclick="confirmDialogDarAlta.hide();" type="button" />  
                             </p:confirmDialog> 
                         </sec:authorize>
                         <p:dataTable var="client" value="#{listarClientes.clientes}" rowKey="#{Cliente.rut}" paginator="true" rows="8" filteredValue="#{listarClientes.clientesFiltrados}" id="tablaClientes" editable="false" emptyMessage="No hay Clientes">
@@ -62,51 +68,63 @@
                             </p:column>
                             <p:column headerText="Opciones">  
                                 <p:panelGrid columns="3" >
-                                    <p:commandLink onclick="confirmDialogRemove.show();"  id="info">
+                                    <p:commandLink onclick="verCliente.show();"  id="info">
                                         <span class="ui-icon ui-icon-info"/>
-                                        <f:setPropertyActionListener value="#{clien}" target="#{listarClientes.clienteSelecionado}"/>
+                                        <f:setPropertyActionListener value="#{client}" target="#{listarClientes.clienteSelecionado}"/>
                                         <p:tooltip value="Ver Detalles del Cliente" for="info" />  
                                     </p:commandLink>
                                     <sec:authorize ifAnyGranted="ROLE_CLIENTE_MODIFICAR">
-                                        <p:commandLink onclick="confirmDialogRemove.show();" id="modificar">
+                                        <p:commandLink onclick="confirmDialogDarBaja.show();" id="modificar">
                                             <span class="ui-icon ui-icon-pencil"/>
-                                            <f:setPropertyActionListener value="#{clien}" target="#{listarClientes.clienteSelecionado}"/>
+                                            <f:setPropertyActionListener value="#{client}" target="#{listarClientes.clienteSelecionado}"/>
                                             <p:tooltip value="Modificar Cliente" for="modificar" />  
                                         </p:commandLink>
                                     </sec:authorize>
-                                    <sec:authorize ifAnyGranted="ROLE_CLIENTE_ELIMINAR">
-                                        <p:commandLink onclick="confirmDialogRemove.show();" id="eliminar" >
-                                            <span class="ui-icon ui-icon-trash"/>
-                                            <f:setPropertyActionListener value="#{clien}" target="#{listarClientes.clienteSelecionado}"/>
-                                            <p:tooltip value="Dar de baja Cliente" for="eliminar" />  
+                                    <sec:authorize ifAnyGranted="ROLE_CLIENTE_DAR_BAJA">
+                                        <p:commandLink onclick="confirmDialogDarBaja.show();" id="darBaja" >
+                                            <span class="ui-icon-circle-arrow-s"/>
+                                            <f:setPropertyActionListener value="#{client}" target="#{listarClientes.clienteSelecionado}"/>
+                                            <p:tooltip value="Dar de baja Cliente" for="darBaja" />  
+                                        </p:commandLink>
+                                    </sec:authorize>
+                                    <sec:authorize ifAnyGranted="ROLE_CLIENTE_DAR_ALTA">
+                                        <p:commandLink onclick="confirmDialogDarAlta.show();" id="darAlta" >
+                                            <span class="ui-icon-circle-arrow-s"/>
+                                            <f:setPropertyActionListener value="#{client}" target="#{listarClientes.clienteSelecionado}"/>
+                                            <p:tooltip value="Dar de Alta Cliente" for="darAlta" />  
                                         </p:commandLink>
                                     </sec:authorize>
                                 </p:panelGrid>
                             </p:column>  
                         </p:dataTable>
+                        <p:dialog header="Ver Cliente" widgetVar="verCliente" minHeight="100" height="500" dynamic="true" >
+
+                            <ui:include src="verCliente.xhtml"/>
+
+                        </p:dialog>
                     </sec:authorize>
                     <sec:authorize ifAnyGranted="ROLE_CLIENTE_REGISTRO">
                         <p:commandButton value="Nuevo Cliente" id="btnNuevoCliente"  
                                          icon="ui-icon-person" onclick="nuevoCliente.show();"/>  
-                        <p:dialog header="Nuevo Cliente" widgetVar="nuevoCliente" minHeight="100" height="500">
+                        <p:dialog header="Nuevo Cliente" widgetVar="nuevoCliente" minHeight="100" height="500" dynamic="true">
 
                             <ui:include src="nuevoCliente.xhtml"/>
 
                         </p:dialog>
-                    
-                    </sec:authorize>
-  <!-- 
-                    <sec:authorize ifAllGranted="ROLE_ADMIN, ROLE_BAR">
-                        Lorem ipsum dolor sit amet1
-                    </sec:authorize>
 
-                    <sec:authorize ifNotGranted="ROLE_ADMIN, ROLE_BAR">
-                        Lorem ipsum dolor sit amet2
                     </sec:authorize>
-
-                    <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_BAR">
-                        Lorem ipsum dolor sit amet3
-                    </sec:authorize>-->
+                    <!-- 
+                                      <sec:authorize ifAllGranted="ROLE_ADMIN, ROLE_BAR">
+                                          Lorem ipsum dolor sit amet1
+                                      </sec:authorize>
+                  
+                                      <sec:authorize ifNotGranted="ROLE_ADMIN, ROLE_BAR">
+                                          Lorem ipsum dolor sit amet2
+                                      </sec:authorize>
+                  
+                                      <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_BAR">
+                                          Lorem ipsum dolor sit amet3
+                                      </sec:authorize>-->
                 </h:form>
             </p:layoutUnit>
         </p:layout>
