@@ -19,31 +19,31 @@
                             <h:panelGrid columns="3" columnClasses="label, value" styleClass="grid">
                                 <h:outputText value="Rut: *" />
                                 <p:inputText required="true" label="rut" id="rut"
-                                             value="#{listarClientes.nuevoUsuario.rut}"  requiredMessage="El Rut es Obligatorio" validator="validator.rutValidator" />
+                                             value="#{listarClientes.clienteSelecionado.usuario.rut}" disabled="true"  requiredMessage="El Rut es Obligatorio" validator="validator.rutValidator" />
                                 <p:message for="rut" display="icon"/>  
                                 <h:outputText value="Primer Nombre: *" />
                                 <p:inputText id="primerNombre" required="true" label="primerNombre"
-                                             value="#{listarClientes.nuevoUsuario.primerNombre}" requiredMessage="El Primer Nombre es Obligatorio"/>
+                                             value="#{listarClientes.clienteSelecionado.usuario.primerNombre}" requiredMessage="El Primer Nombre es Obligatorio"/>
                                 <p:message for="primerNombre" display="icon"/>  
                                 <h:outputText value="Segundo Nombre:" />
                                 <p:inputText required="false" label="segundoNombre" id="segundoNombre"
-                                             value="#{listarClientes.nuevoUsuario.segundoNombre}"/>
+                                             value="#{listarClientes.clienteSelecionado.usuario.segundoNombre}"/>
                                 <p:message for="segundoNombre" display="icon"/>  
                                 <h:outputText value="Apellido Paterno: *" />
                                 <p:inputText required="true" label="apellidoPaterno" id="apellidoPaterno"
-                                             value="#{listarClientes.nuevoUsuario.apellidoPaterno}" requiredMessage="El Apellido Paterno es Obligatorio"/>
+                                             value="#{listarClientes.clienteSelecionado.usuario.apellidoPaterno}" requiredMessage="El Apellido Paterno es Obligatorio"/>
                                 <p:message for="apellidoPaterno" display="icon"/>  
                                 <h:outputText value="Apellido Materno: *" />
                                 <p:inputText required="true" label="apellidoMaterno" id="apellidoMaterno"
-                                             value="#{listarClientes.nuevoUsuario.apellidoMaterno}" requiredMessage="El Apellido Materno es Obligatorio"/>
+                                             value="#{listarClientes.clienteSelecionado.usuario.apellidoMaterno}" requiredMessage="El Apellido Materno es Obligatorio"/>
                                 <p:message for="apellidoMaterno" display="icon"/>  
                                 <h:outputText value="Ocupacion: " />
                                 <p:inputText label="apellidoMaterno" id="ocupacion"
-                                             value="#{listarClientes.nuevoCliente.ocupacion}" />
+                                             value="#{listarClientes.clienteSelecionado.ocupacion}" />
                                 <p:message for="ocupacion" display="icon"/> 
                                 <h:outputText value="Fecha de Nacimiento: *" />
                                 
-                                <p:calendar  navigator="true" value="#{listarClientes.nuevoUsuario.fechaNacimiento}" id="fechaNacimiento" showOn="button" required="true" requiredMessage="La Fecha de Nacimiento es Obligatorio" pattern="dd-MM-yyyy" locale="es">
+                                <p:calendar  navigator="true" value="#{listarClientes.clienteSelecionado.usuario.fechaNacimiento}" id="fechaNacimiento" showOn="button" required="true" requiredMessage="La Fecha de Nacimiento es Obligatorio" pattern="dd-MM-yyyy" locale="es">
                               
                                 </p:calendar>
                                 <p:message for="fechaNacimiento" display="icon"/>  
@@ -58,19 +58,19 @@
                             <h:messages errorClass="error"/>
                             <h:panelGrid columns="3" columnClasses="label, value, messaje">
                                 <h:outputText value="Direccion: *" />
-                                <p:inputText id="direccion" value="#{listarClientes.nuevoUsuario.direccion}" required="true" requiredMessage="La Dirrecion es Obligatoria"/>
+                                <p:inputText id="direccion" value="#{listarClientes.clienteSelecionado.usuario.direccion}" required="true" requiredMessage="La Dirrecion es Obligatoria"/>
                                 <p:message for="direccion" display="icon"/>  
                                 <h:outputText value="Comuna: * " />
-                                <p:inputText id="comuna" value="#{listarClientes.nuevoUsuario.comuna}" required="true" requiredMessage="La Comuna es Obligatoria"/>
+                                <p:inputText id="comuna" value="#{listarClientes.clienteSelecionado.usuario.comuna}" required="true" requiredMessage="La Comuna es Obligatoria"/>
                                 <p:message for="comuna" display="icon"/>  
                                 <h:outputText value="Telefono:" />
-                                <p:inputText id="telefono" value="#{listarClientes.nuevoUsuario.telefono}" />
+                                <p:inputText id="telefono" value="#{listarClientes.clienteSelecionado.usuario.telefono}" />
                                 <p:message for="telefono" display="icon"/>  
                                 <h:outputText value="Celular:" />
-                                <p:inputText id="celular" value="#{listarClientes.nuevoUsuario.celular}" />
+                                <p:inputText id="celular" value="#{listarClientes.clienteSelecionado.usuario.celular}" />
                                 <p:message for="celular" display="icon"/>  
                                 <h:outputText value="Telefono de Emergencia:" />
-                                <p:inputText id="telefonoEmergencia" value="#{listarClientes.nuevoUsuario.telefonoEmergencia}" />
+                                <p:inputText id="telefonoEmergencia" value="#{listarClientes.clienteSelecionado.usuario.telefonoEmergencia}" />
                                 <p:message for="telefonoEmergencia" display="icon"/>  
                             </h:panelGrid>
                         </p:panel>
@@ -81,13 +81,10 @@
                             <h:panelGrid columns="3" columnClasses="label, value, messaje">
                                 <h:outputText value="Email: *" />
                                 <p:inputText required="true" label="Email" id="email"
-                                             value="#{listarClientes.nuevoUsuario.email}" requiredMessage="El Email es Obligatorio" validatorMessage="El Formato del Email es Incorrecto nombre@ejemplo.cl">
+                                             value="#{listarClientes.clienteSelecionado.usuario.email}" requiredMessage="El Email es Obligatorio" validatorMessage="El Formato del Email es Incorrecto nombre@ejemplo.cl">
                                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                                 </p:inputText>
                                 <p:message for="email" display="icon"/>  
-                                <h:outputText value="Clave:*" />
-                                <p:inputText id="clave" value="#{listarClientes.nuevoUsuario.clave}" required="true" requiredMessage="La Clave es Obligatoria"/>
-                                <p:message for="clave" display="icon"/>  
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>
@@ -101,19 +98,19 @@
                             <h:messages errorClass="error"/>  
                             <h:panelGrid columns="3" columnClasses="label, value, messaje">
                                 <h:outputText value="Lesiones u Operaciones:" />
-                                <p:inputTextarea id="lesionesOperaciones" value="#{listarClientes.nuevoCliente.lesionesOperaciones}" rows="10" cols="55" maxlength="1000" counter="lesionesOperacionesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="lesionesOperaciones" value="#{listarClientes.clienteSelecionado.lesionesOperaciones}" rows="10" cols="55" maxlength="1000" counter="lesionesOperacionesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="lesionesOperacionesContador" /> 
                                 <h:outputText value="Enfermedades Cardiacas:" />
-                                <p:inputTextarea id="enfermedadesCardiacas" value="#{listarClientes.nuevoCliente.enfermedadesCardiacas}" rows="10" cols="55" maxlength="1000" counter="enfermedadesCardiacasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="enfermedadesCardiacas" value="#{listarClientes.clienteSelecionado.enfermedadesCardiacas}" rows="10" cols="55" maxlength="1000" counter="enfermedadesCardiacasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="enfermedadesCardiacasContador" /> 
                                 <h:outputText value="Enfermedades Previas:" />
-                                <p:inputTextarea id="enfermedadesPrevias" value="#{listarClientes.nuevoCliente.enfermedadesPrevias}" rows="10" cols="55" maxlength="1000" counter="enfermedadesPreviasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="enfermedadesPrevias" value="#{listarClientes.clienteSelecionado.enfermedadesPrevias}" rows="10" cols="55" maxlength="1000" counter="enfermedadesPreviasContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="enfermedadesPreviasContador" /> 
                                 <h:outputText value="Problemas Sensoriales:" />
-                                <p:inputTextarea id="problemasSensoriales" value="#{listarClientes.nuevoCliente.problemasSensoriales}" rows="10" cols="55" maxlength="1000" counter="problemasSensorialesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="problemasSensoriales" value="#{listarClientes.clienteSelecionado.problemasSensoriales}" rows="10" cols="55" maxlength="1000" counter="problemasSensorialesContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="problemasSensorialesContador" /> 
                                 <h:outputText value="Alergico a:" />
-                                <p:inputTextarea id="alergicoA" value="#{listarClientes.nuevoCliente.alergicoA}" rows="10" cols="55" maxlength="1000" counter="alergicoAContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="alergicoA" value="#{listarClientes.clienteSelecionado.alergicoA}" rows="10" cols="55" maxlength="1000" counter="alergicoAContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="alergicoAContador" /> 
                             </h:panelGrid>
                         </p:panel>
@@ -123,22 +120,22 @@
                             <h:messages errorClass="error"/>  
                             <h:panelGrid columns="3" columnClasses="label, value, messaje">
                                 <h:outputText value="¿Realizo Actividad Fisica en Algun Periodo de estos Ultimos 5 Años?" />
-                                <p:selectBooleanCheckbox id="realizaActividad5Anos" value="#{listarClientes.nuevoCliente.realizaActividad5Anos}" />
+                                <p:selectBooleanCheckbox id="realizaActividad5Anos" value="#{listarClientes.clienteSelecionado.realizaActividad5Anos}" />
                                 <p:message for="realizaActividad5Anos" display="icon"/>  
                                 <h:outputText value="¿Realizo Actividad Fisica?" />
-                                <p:selectBooleanCheckbox id="realizaActividad" value="#{listarClientes.nuevoCliente.realizaActividad}" />
+                                <p:selectBooleanCheckbox id="realizaActividad" value="#{listarClientes.clienteSelecionado.realizaActividad}" />
                                 <p:message for="realizaActividad" display="icon"/>  
                                 <h:outputText value="Tipo de Actividad Fisica que Realiza:" />
-                                <p:inputTextarea id="tipoActividadFisica" value="#{listarClientes.nuevoCliente.tipoActividadFisica}" rows="5" cols="40" maxlength="100" counter="tipoActividadFisicaContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="tipoActividadFisica" value="#{listarClientes.clienteSelecionado.tipoActividadFisica}" rows="5" cols="40" maxlength="100" counter="tipoActividadFisicaContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="tipoActividadFisicaContador" /> 
                                 <h:outputText value="Frecuencia Semanal en la Cual Usted Realiza Actividad Fisica:" />
-                                <p:inputText id="frecuenciaSemanalActividadFisicate" value="#{listarClientes.nuevoCliente.frecuenciaSemanalActividadFisica}" />
+                                <p:inputText id="frecuenciaSemanalActividadFisicate" value="#{listarClientes.clienteSelecionado.frecuenciaSemanalActividadFisica}" />
                                 <h:outputText id="frecuenciaSemanalActividadFisica" /> 
                                 <h:outputText value="Tiempo y Duracion de la Practica de la Actividad Fisca en Minutos:" />
-                                <p:inputText id="duracionActividadFisicat" value="#{listarClientes.nuevoCliente.duracionActividadFisica}" />
+                                <p:inputText id="duracionActividadFisicat" value="#{listarClientes.clienteSelecionado.duracionActividadFisica}" />
                                 <h:outputText id="duracionActividadFisica" /> 
                                 <h:outputText value="¿Cuantas Horas Duerme?" />
-                                <p:inputText id="horasDormirt" value="#{listarClientes.nuevoCliente.horasDormir}" />
+                                <p:inputText id="horasDormirt" value="#{listarClientes.clienteSelecionado.horasDormir}" />
                                 <h:outputText id="horasDormir" /> 
                             </h:panelGrid>
                         </p:panel>
@@ -148,25 +145,25 @@
                             <h:messages errorClass="error"/>  
                             <h:panelGrid columns="3" columnClasses="label, value, messaje">
                                 <h:outputText value="¿Fuma?" />
-                                <p:selectBooleanCheckbox id="fuma" value="#{listarClientes.nuevoCliente.fuma}" />
+                                <p:selectBooleanCheckbox id="fuma" value="#{listarClientes.clienteSelecionado.fuma}" />
                                 <p:message for="fuma" display="icon"/>  
                                 <h:outputText value="Cuanto Fuma:" />
-                                <p:inputText id="cuantoFumat" value="#{listarClientes.nuevoCliente.cuantoFuma}" />
+                                <p:inputText id="cuantoFumat" value="#{listarClientes.clienteSelecionado.cuantoFuma}" />
                                 <h:outputText id="cuantoFuma" /> 
                                 <h:outputText value="¿Bebe Alcohol?" />
-                                <p:selectBooleanCheckbox id="bebeAlcohol" value="#{listarClientes.nuevoCliente.bebeAlcohol}" />
+                                <p:selectBooleanCheckbox id="bebeAlcohol" value="#{listarClientes.clienteSelecionado.bebeAlcohol}" />
                                 <p:message for="bebeAlcohol" display="icon"/>  
                                 <h:outputText value="Especifique Tipo de Alcohol:" />
-                                <p:inputTextarea id="tipoAlcohol" value="#{listarClientes.nuevoCliente.tipoAlcohol}" rows="5" cols="40" maxlength="100" counter="tipoAlcoholContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="tipoAlcohol" value="#{listarClientes.clienteSelecionado.tipoAlcohol}" rows="5" cols="40" maxlength="100" counter="tipoAlcoholContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="tipoAlcoholContador" /> 
                                 <h:outputText value="Frecuencia que Bebe Alcohol:" />
-                                <p:inputText id="frecuenciaBeberAlcoholt" value="#{listarClientes.nuevoCliente.frecuenciaBeberAlcohol}" />
+                                <p:inputText id="frecuenciaBeberAlcoholt" value="#{listarClientes.clienteSelecionado.frecuenciaBeberAlcohol}" />
                                 <h:outputText id="frecuenciaBeberAlcohol" /> 
                                 <h:outputText value="¿Consume Cafe?" />
-                                <p:selectBooleanCheckbox id="consumeCafet" value="#{listarClientes.nuevoCliente.consumeCafe}" />
+                                <p:selectBooleanCheckbox id="consumeCafet" value="#{listarClientes.clienteSelecionado.consumeCafe}" />
                                 <p:message for="consumeCafet" display="icon"/>
                                 <h:outputText value="Tipo de Cafe que Consume:" />
-                                <p:inputTextarea id="tipoCafe" value="#{listarClientes.nuevoCliente.tipoCafe}" rows="5" cols="40" maxlength="100" counter="tipoCafeContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
+                                <p:inputTextarea id="tipoCafe" value="#{listarClientes.clienteSelecionado.tipoCafe}" rows="5" cols="40" maxlength="100" counter="tipoCafeContador" counterTemplate="{0} Caracteres Restantes." autoResize="false"/>
                                 <h:outputText id="tipoCafeContador" /> 
                             </h:panelGrid>
                         </p:panel>
@@ -213,7 +210,7 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.rut}" />
+                                                          value="#{listarClientes.clienteSelecionado.rut}"  />
                                         </p:column>
                                         <p:column>
                                             <h:outputText />
@@ -228,14 +225,14 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText  styleClass="outputLabel"
-                                                           value="#{listarClientes.nuevoUsuario.primerNombre}"/>
+                                                           value="#{listarClientes.clienteSelecionado.usuario.primerNombre}"/>
                                         </p:column>
                                         <p:column>
                                             <h:outputText value="Segundo Nombre: " style="font-weight:bold;"/>
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.segundoNombre}" />
+                                                          value="#{listarClientes.clienteSelecionado.usuario.segundoNombre}" />
                                         </p:column>
                                     </p:row>
                                     <p:row>
@@ -244,14 +241,14 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.apellidoPaterno}" />
+                                                          value="#{listarClientes.clienteSelecionado.usuario.apellidoPaterno}" />
                                         </p:column>
                                         <p:column >
                                             <h:outputText value="Apellido Materno: " style="font-weight:bold;"/>
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.apellidoMaterno}" />
+                                                          value="#{listarClientes.clienteSelecionado.usuario.apellidoMaterno}" />
                                         </p:column>
                                     </p:row>
                                      <p:row>
@@ -260,7 +257,7 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoUsuario.fechaNacimiento}">
+                                                          value="#{listarClientes.clienteSelecionado.usuario.fechaNacimiento}">
                                                 <f:convertDateTime pattern="d-M-yyyy"/>  
                                             </h:outputText>
                                         </p:column>
@@ -269,7 +266,7 @@
                                         </p:column>
                                         <p:column>
                                             <h:outputText styleClass="outputLabel"
-                                                          value="#{listarClientes.nuevoCliente.ocupacion}" />
+                                                          value="#{listarClientes.clienteSelecionado.ocupacion}" />
                                         </p:column>
                                     </p:row>
                                 </p:panelGrid>
@@ -279,22 +276,22 @@
                                 <p:panelGrid styleClass="resumenGrid" columns="4" >
                                     <h:outputText value="Direccion: "  style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.direccion}" />
+                                                  value="#{listarClientes.clienteSelecionado.usuario.direccion}" />
                                     <h:outputText value="Comuna: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.comuna}"/>
+                                                  value="#{listarClientes.clienteSelecionado.usuario.comuna}"/>
                                     <h:outputText value="Telefono: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.telefono}" />
+                                                  value="#{listarClientes.clienteSelecionado.usuario.telefono}" />
                                     <h:outputText value="Celular: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.celular}"/>
+                                                  value="#{listarClientes.clienteSelecionado.usuario.celular}"/>
                                     <h:outputText value="Telefono de Emergencia: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.telefonoEmergencia}"/>
+                                                  value="#{listarClientes.clienteSelecionado.usuario.telefonoEmergencia}"/>
                                     <h:outputText value="Email: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoUsuario.email}"/>
+                                                  value="#{listarClientes.clienteSelecionado.usuario.email}"/>
                                 </p:panelGrid>
                             </p:fieldset>
                             <br/>
@@ -302,19 +299,19 @@
                                 <p:panelGrid styleClass="resumenGrid" columns="2" >
                                     <h:outputText value="Lesiones u Operaciones: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.lesionesOperaciones}"/>
+                                                  value="#{listarClientes.clienteSelecionado.lesionesOperaciones}"/>
                                     <h:outputText value="Enfermedades Cardiacas: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.enfermedadesCardiacas}"/>
+                                                  value="#{listarClientes.clienteSelecionado.enfermedadesCardiacas}"/>
                                     <h:outputText value="Enfermedades Previas: " style="font-weight:bold;" />
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.enfermedadesPrevias}"/>
+                                                  value="#{listarClientes.clienteSelecionado.enfermedadesPrevias}"/>
                                     <h:outputText value="Problemas Sensorales: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.problemasSensoriales}"/>
+                                                  value="#{listarClientes.clienteSelecionado.problemasSensoriales}"/>
                                     <h:outputText value="Alergico a: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.alergicoA}"/>
+                                                  value="#{listarClientes.clienteSelecionado.alergicoA}"/>
                                 </p:panelGrid>
                             </p:fieldset>
                             <br/>
@@ -322,22 +319,22 @@
                                 <p:panelGrid styleClass="resumenGrid" columns="2" >
                                     <h:outputText value="¿Realizo Actividad Fisica en Algun Periodo de estos Ultimos 5 Años? " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.realizaActividad5Anos}"/>
+                                                  value="#{listarClientes.clienteSelecionado.realizaActividad5Anos}"/>
                                     <h:outputText value="¿Realizo Actividad Fisica?" style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.realizaActividad}"/>
+                                                  value="#{listarClientes.clienteSelecionado.realizaActividad}"/>
                                     <h:outputText value="Tipo de Actividad Fisica que Realiza: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.tipoActividadFisica}"/>
+                                                  value="#{listarClientes.clienteSelecionado.tipoActividadFisica}"/>
                                     <h:outputText value="Frecuencia Semanal en la Cual Usted Realiza Actividad Fisica: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.frecuenciaSemanalActividadFisica}"/>
+                                                  value="#{listarClientes.clienteSelecionado.frecuenciaSemanalActividadFisica}"/>
                                     <h:outputText value="Tiempo y Duracion de la Practica de la Actividad Fisca en Minutos: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.duracionActividadFisica}"/>
+                                                  value="#{listarClientes.clienteSelecionado.duracionActividadFisica}"/>
                                     <h:outputText value="¿Cuantas Horas Duerme? " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.horasDormir}"/>
+                                                  value="#{listarClientes.clienteSelecionado.horasDormir}"/>
                                 </p:panelGrid>
                             </p:fieldset>
                             <br/>
@@ -345,25 +342,25 @@
                                 <p:panelGrid styleClass="resumenGrid" columns="2" >
                                     <h:outputText value="¿Fuma? " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.fuma}"/>
+                                                  value="#{listarClientes.clienteSelecionado.fuma}"/>
                                     <h:outputText value="Cuanto Fuma: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.cuantoFuma}"/>
+                                                  value="#{listarClientes.clienteSelecionado.cuantoFuma}"/>
                                     <h:outputText value="¿Bebe Alcohol? " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.bebeAlcohol}"/>
+                                                  value="#{listarClientes.clienteSelecionado.bebeAlcohol}"/>
                                     <h:outputText value="Especifique Tipo de Alcohol: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.tipoAlcohol}"/>
+                                                  value="#{listarClientes.clienteSelecionado.tipoAlcohol}"/>
                                     <h:outputText value="Frecuencia que Bebe Alcohol: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.frecuenciaBeberAlcohol}"/>
+                                                  value="#{listarClientes.clienteSelecionado.frecuenciaBeberAlcohol}"/>
                                     <h:outputText value="¿Consume Cafe? " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.consumeCafe}"/>
+                                                  value="#{listarClientes.clienteSelecionado.consumeCafe}"/>
                                     <h:outputText value="Tipo de Cafe que Consume: " style="font-weight:bold;"/>
                                     <h:outputText styleClass="outputLabel"
-                                                  value="#{listarClientes.nuevoCliente.tipoCafe}"/>
+                                                  value="#{listarClientes.clienteSelecionado.tipoCafe}"/>
                                 </p:panelGrid>
                             </p:fieldset>
                             <br/>
@@ -375,8 +372,8 @@
                             Imprimir
                             <p:printer target="exportDD" />  
                         </h:commandLink>  
-                        <p:commandButton value="Agregar Cliente" update=":glow, :formTest:tablaClientes" oncomplete="nuevoCliente.hide();"
-                                         actionListener="#{listarClientes.guardarNuevoCliente}" ajax="true"/>
+                        <p:commandButton value="Modificar Cliente" update=":glow, :formTest:tablaClientes" oncomplete="modificarCliente2.hide();"
+                                         actionListener="#{listarClientes.modificarCliente}" ajax="true"/>
                     </p:tab>
                 </p:wizard>
             </h:form>

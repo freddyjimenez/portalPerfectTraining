@@ -12,7 +12,8 @@
                 <intercept-url pattern="/sys/index.xhtml" access="hasRole('ROLE_INDEX')" />
         <intercept-url pattern="/sys/modulos/cliente/clientes.xhtml" access="hasRole('ROLE_CLIENTE_PAGE')" />
         <intercept-url pattern="/sys/modulos/cliente/nuevoCliente.xhtml" access="hasRole('ROLE_CLIENTE_REGISTRO')" />
-
+        <intercept-url pattern="/sys/modulos/cliente/verCliente.xhtml" access="hasRole('ROLE_CLIENTE_PAGE')" />
+        <intercept-url pattern="/sys/modulos/cliente/modificarCliente.xhtml" access="hasRole('ROLE_CLIENTE_MODIFICAR')" />
       <form-login login-page="/" authentication-failure-url="/" default-target-url="/sys/"/>
     </http>
     

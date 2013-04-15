@@ -13,6 +13,7 @@ import cl.perfecttraining.sys.controller.exceptions.NonexistentEntityException;
 import cl.perfecttraining.sys.controller.exceptions.RollbackFailureException;
 import cl.perfecttraining.sys.model.Perfil;
 import cl.perfecttraining.sys.model.Usuario;
+import cl.perfecttraining.sys.util.jpaUtil;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -31,8 +32,6 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.primefaces.context.RequestContext;
@@ -48,8 +47,6 @@ public class listarClientes implements Serializable {
      */
     @Resource
     private UserTransaction utx;
-    @PersistenceUnit(unitName = "perfectPersistence")
-    EntityManagerFactory emf;
     ClienteJpaController daoCliente;
     List<Cliente> clientes;
     List<Cliente> clientesFiltrados;
@@ -59,14 +56,14 @@ public class listarClientes implements Serializable {
     Cliente nuevoCliente = new Cliente();
     Usuario nuevoUsuario = new Usuario();
     Perfil perfil = new Perfil("Cliente");
-    private int B;
+
 
     public listarClientes() throws NamingException {
-        emf = javax.persistence.Persistence.createEntityManagerFactory("perfectPersistence");
+        
         Context initCtx = new InitialContext();
         utx = (UserTransaction) initCtx.lookup("java:comp/UserTransaction");
-        daoCliente = new ClienteJpaController(utx, emf);
-        daoUsuario = new UsuarioJpaController(utx, emf);
+        daoCliente = new ClienteJpaController(utx, jpaUtil.getEmf());
+        daoUsuario = new UsuarioJpaController(utx, jpaUtil.getEmf());
         clientes = daoCliente.findClienteEntities();
         clientesFiltrados = daoCliente.findClienteEntities();
     }
@@ -190,6 +187,7 @@ public class listarClientes implements Serializable {
     public void darDeBajaCliente(){
         usuarioSelecionado=clienteSelecionado.getUsuario();
         usuarioSelecionado.setEstado(Boolean.FALSE);
+        usuarioSelecionado.setFechaCambioEstado(new Date());
         try {
             daoUsuario.edit(usuarioSelecionado);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Dado de Baja Correctamente", "El Cliente con Rut " + clienteSelecionado.getRut() + " Ha Sido Dado de Baja");
@@ -215,6 +213,7 @@ public class listarClientes implements Serializable {
     public void darDeAltaCliente(){
         usuarioSelecionado=clienteSelecionado.getUsuario();
         usuarioSelecionado.setEstado(Boolean.TRUE);
+        usuarioSelecionado.setFechaCambioEstado(new Date());
         try {
             daoUsuario.edit(usuarioSelecionado);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Dado de Alta Correctamente", "El Cliente con Rut " + clienteSelecionado.getRut() + " Ha Sido Dado de Alta");
@@ -237,5 +236,29 @@ public class listarClientes implements Serializable {
             Logger.getLogger(listarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public void modificarCliente(){
+        try {
+            daoUsuario.edit(clienteSelecionado.getUsuario());
+            daoCliente.edit(clienteSelecionado);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "El Cliente a Sido Modificado Correctamente", "El Cliente con Rut " + clienteSelecionado.getRut() + " Ha Sido Modificado");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+        } catch (IllegalOrphanException ex) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error Interno al Modificar al Cliente por favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            Logger.getLogger(listarClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error Interno al Modificar al Cliente por favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            Logger.getLogger(listarClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RollbackFailureException ex) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error Interno al Modificar al Cliente por favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            Logger.getLogger(listarClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error Interno al Modificar al Cliente por favor Contactese con el Administrador");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            Logger.getLogger(listarClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
